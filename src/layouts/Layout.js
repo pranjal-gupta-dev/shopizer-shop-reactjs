@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import Header from "../wrappers/header/Header";
 import Footer from "../wrappers/footer/Footer";
+import CompareBar from "../components/product/CompareBar";
 
 const Layout = ({
   children,
@@ -24,6 +25,7 @@ const Layout = ({
         spaceTopClass="pt-100"
         spaceBottomClass="pb-70"
       />
+      <CompareBar />
     </Fragment>
   );
 };

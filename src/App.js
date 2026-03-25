@@ -44,6 +44,7 @@ const OrderConfirm = lazy(() => import("./pages/other/OrderConfirm"));
 const Content = lazy(() => import("./pages/content/Content"));
 const SearchProduct = lazy(() => import("./pages/search-product/SearchProduct"));
 
+const Compare = lazy(() => import("./pages/other/Compare"));
 
 //export default function App = (props) => {
 const App = (props) => {
@@ -168,6 +169,11 @@ const App = (props) => {
                 <Route
                   path="/order-confirm"
                   component={OrderConfirm}
+                />
+
+                <Route
+                  path="/compare"
+                  component={Compare}
                 />
 
                 <Route
