@@ -7,7 +7,7 @@ COPY .env ./
 COPY env.sh ./
 COPY conf ./
 #remove internal .env file
-RUN npm ci --silent
+RUN npm install --silent
 #must match package.json react-scripts
 COPY . .
 RUN npm run build
