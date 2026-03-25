@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { connect } from "react-redux";
 // import { getDiscountPrice } from "../../helpers/product";
 import ProductModal from "./ProductModal";
+import AddToCompare from "./AddToCompare";
 import { setProductID } from "../../redux/actions/productActions";
 const ProductGridSingleTwo = ({
   product,
@@ -99,6 +100,8 @@ const ProductGridSingleTwo = ({
               <button onClick={() => setModalShow(true)} title="Quick View">
                 <i className="fa fa-eye"></i>
               </button>
+
+              <AddToCompare product={product} />
 
               {/* <button
                 className={compareItem !== undefined ? "active" : ""}

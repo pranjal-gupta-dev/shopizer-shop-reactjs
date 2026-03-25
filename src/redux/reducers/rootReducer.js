@@ -5,6 +5,7 @@ import storeReducer from "./storeReducer";
 import loaderReducer from "./loaderReducer";
 import userReducer from "./userReducer";
 import contentReducer from "./contentReducer";
+import compareReducer from "./compareReducer";
 import { combineReducers } from "redux";
 import { createMultilanguageReducer } from "redux-multilanguage";
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   cartData: cartReducer,
   loading: loaderReducer,
   userData: userReducer,
-  content: contentReducer
+  content: contentReducer,
+  compareData: compareReducer
 });
 
 export default rootReducer;

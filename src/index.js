@@ -17,8 +17,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(
   rootReducer,
-  load(),
-  composeWithDevTools(applyMiddleware(thunk, save()))
+  load({ states: ["cartData", "userData", "compareData"] }),
+  composeWithDevTools(applyMiddleware(thunk, save({ states: ["cartData", "userData", "compareData"] })))
 );
 
 // fetch products from json file
