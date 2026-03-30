@@ -23,7 +23,7 @@ const AddToCompare = ({ product, className }) => {
         image: product.images?.[0]?.imageUrl || product.image,
         price: product.originalPrice || product.price,
         finalPrice: product.finalPrice,
-        description: product.description?.description || product.description,
+        description: product.description || {},
         sku: product.sku,
         attributes: product.attributes || []
       };

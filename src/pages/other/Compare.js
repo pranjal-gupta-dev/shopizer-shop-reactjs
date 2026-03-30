@@ -120,8 +120,8 @@ const Compare = () => {
                         {compareItems.map(item => (
                           <td key={item.id}>
                             <div className="description">
-                              {item.description 
-                                ? item.description.substring(0, 200) + "..." 
+                              {item.description?.description 
+                                ? item.description.description.substring(0, 200) + "..." 
                                 : "No description available"}
                             </div>
                           </td>
