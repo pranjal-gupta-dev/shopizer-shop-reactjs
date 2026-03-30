@@ -1,19 +1,16 @@
-name: Shopizer Shop CI/CD - Colima Deployment
+name: Shopizer Shop Build
 
 on:
   push:
-    branches: [main, develop, ci-pipeline]
-  pull_request:
     branches: [main, develop, ci-pipeline]
   workflow_dispatch:
 
 env:
   NODE_VERSION: '14'
-  DOCKER_IMAGE: shopizerecomm/shopizer-shop
 
 jobs:
-  build-and-deploy:
-    name: Build for Colima Deployment
+  build:
+    name: Build React App
     runs-on: ubuntu-latest
     
     steps:
@@ -34,34 +31,9 @@ jobs:
         env:
           CI: false
       
-      - name: Build Docker image
-        run: |
-          DOCKER_BUILDKIT=0 docker build -t shopizerecomm/shopizer-shop:latest .
-          echo "✅ Docker image built successfully"
-      
-      - name: Save image as compressed artifact
-        run: |
-          echo "💾 Saving image..."
-          DOCKER_BUILDKIT=0 docker save shopizerecomm/shopizer-shop:latest | gzip > shopizer-shop-image.tar.gz
-          ls -lh shopizer-shop-image.tar.gz
-          echo "✅ Image saved as artifact"
-      
-      - name: Upload Docker image artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: shop-docker-image
-          path: shopizer-shop-image.tar.gz
+          name: shop-build
+          path: build/
           retention-days: 7
-          compression-level: 0
-      
-      - name: Deployment Instructions
-        run: |
-          echo "════════════════════════════════════════════════════"
-          echo "✅ Docker image ready: shop-docker-image"
-          echo "════════════════════════════════════════════════════"
-          echo ""
-          echo "📥 Deploy to Colima:"
-          echo "   gh run download ${{ github.run_id }} --name shop-docker-image"
-          echo "   gunzip -c shopizer-shop-image.tar.gz | docker load"
-          echo "   docker run -d -p 3000:80 --name shopizer-shop shopizerecomm/shopizer-shop:latest"
-          echo ""
