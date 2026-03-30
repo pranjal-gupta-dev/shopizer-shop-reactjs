@@ -15,9 +15,6 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./shopizer-shop-reactjs
     
     steps:
       - name: Checkout code
@@ -65,9 +62,6 @@ jobs:
     name: Code Quality
     runs-on: ubuntu-latest
     needs: build-and-test
-    defaults:
-      run:
-        working-directory: ./shopizer-shop-reactjs
     
     steps:
       - name: Checkout code
@@ -102,9 +96,6 @@ jobs:
     name: Security Scan
     runs-on: ubuntu-latest
     needs: build-and-test
-    defaults:
-      run:
-        working-directory: ./shopizer-shop-reactjs
     
     steps:
       - name: Checkout code
@@ -145,16 +136,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: shop-build
-          path: shopizer-shop-reactjs/build/
+          path: build/
       
       - name: Verify build artifacts
         run: |
-          ls -lh shopizer-shop-reactjs/build/
+          ls -lh build/
           echo "✅ Build artifacts downloaded"
       
       - name: Build Docker image
         run: |
-          cd shopizer-shop-reactjs
           DOCKER_BUILDKIT=0 docker build -t shopizerecomm/shopizer-shop:latest .
           echo "✅ Docker image built successfully"
       
